@@ -1,6 +1,13 @@
 import counter from 'count-between'
 
 /**
+ * Checks if a variable is a element node.
+ * @param {?*} elem
+ * @returns {Boolean}
+ */
+const isElementNode = (elem) => elem != null && elem.nodeType === Node.ELEMENT_NODE
+
+/**
  * Chunks an array into smaller arrays of a specified size.
  * @param {Array} arr
  * @param {Number} size
@@ -9,23 +16,8 @@ import counter from 'count-between'
 const chunk = (arr, size) => Array.from({ length: Math.ceil(arr.length / size) }, (_, index) => arr.slice(index * size, index * size + size))
 
 /**
- * Creates an element from a HTML string.
- * @param {String} html
- * @returns {Node}
- */
-const toElement = function(html) {
-
-	const elem = document.createElement('div')
-
-	elem.innerHTML = html.trim()
-
-	return elem.firstChild
-
-}
-
-/**
  * Shows the current page and hides the rest.
- * @param {Array} pages
+ * @param {Array} pages - Array in which each item contains the DOM element/node objects of a page.
  * @param {Number} index
  */
 const showPage = function(pages, index) {
@@ -42,14 +34,18 @@ const showPage = function(pages, index) {
 }
 
 /**
- * Renders the pagination and binds events.
- * @param {String|Node} html
+ * Binds events to an element.
+ * @param {?Node} pagination
  * @param {Object} instance
- * @returns {Node}
  */
-const renderPagination = function(html, instance) {
+const setEvents = function(pagination, instance) {
 
-	const pagination = typeof html === 'string' ? toElement(html) : html
+	if (pagination == null) return
+
+	if (isElementNode(pagination) === false) {
+		console.warn('Could not bind events to pagination as the renderer returned a non-element node')
+		return
+	}
 
 	pagination.querySelectorAll('[data-basicpagination-first]').forEach((elem) => {
 		elem.addEventListener('click', instance.first)
@@ -72,8 +68,6 @@ const renderPagination = function(html, instance) {
 		elem.addEventListener('click', () => instance.goto(newIndex))
 	})
 
-	return pagination
-
 }
 
 /**
@@ -85,7 +79,6 @@ const renderPagination = function(html, instance) {
 export const create = function(elems, elemsPerPage) {
 
 	let renderer = null
-	let updater = null
 
 	// Number of pages
 	const length = Math.ceil(elems.length / elemsPerPage)
@@ -108,8 +101,6 @@ export const create = function(elems, elemsPerPage) {
 	// Navigate to a pages
 	const _goto = (newIndex) => {
 
-		const shouldRender = renderer != null && updater != null
-
 		// Recreate counter with new initial value
 		c = counter(0, _length() - 1, newIndex)
 
@@ -117,7 +108,7 @@ export const create = function(elems, elemsPerPage) {
 		showPage(pages, c())
 
 		// Update pagination
-		if (shouldRender === true) _render()
+		_render()
 
 	}
 
@@ -149,15 +140,13 @@ export const create = function(elems, elemsPerPage) {
 
 	}
 
-	const _render = (_renderer = renderer, _updater = updater) => {
+	const _render = (_renderer = renderer) => {
 
 		renderer = _renderer
-		updater = _updater
 
-		const html = renderer(instance)
-		const pagination = renderPagination(html, instance)
+		if (renderer == null) return
 
-		updater(pagination)
+		setEvents(renderer(instance), instance)
 
 	}
 
