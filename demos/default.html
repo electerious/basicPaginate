@@ -23,12 +23,12 @@
 			background: #f8f8f8;
 		}
 
-		.items {
+		.container {
 			width: 100%;
 			max-width: 500px;
 		}
 
-		.items__item {
+		.item {
 			margin-bottom: 4px;
 			padding: 1em 1.4em;
 			background: white;
@@ -80,31 +80,31 @@
 
 	</style>
 
-	<div class="items">
-		<div class="items__item">Item 1</div>
-		<div class="items__item">Item 2</div>
-		<div class="items__item">Item 3</div>
-		<div class="items__item">Item 4</div>
-		<div class="items__item">Item 5</div>
-		<div class="items__item">Item 6</div>
-		<div class="items__item">Item 7</div>
-		<div class="items__item">Item 8</div>
-		<div class="items__item">Item 9</div>
-		<div class="items__item">Item 10</div>
-		<div class="items__item">Item 11</div>
-		<div class="items__item">Item 12</div>
-		<div class="items__item">Item 13</div>
-		<div class="items__item">Item 14</div>
-		<div class="items__item">Item 15</div>
-		<div class="items__item">Item 16</div>
-		<div class="items__pagination"></div>
+	<div class="container">
+		<div class="item">Item 1</div>
+		<div class="item">Item 2</div>
+		<div class="item">Item 3</div>
+		<div class="item">Item 4</div>
+		<div class="item">Item 5</div>
+		<div class="item">Item 6</div>
+		<div class="item">Item 7</div>
+		<div class="item">Item 8</div>
+		<div class="item">Item 9</div>
+		<div class="item">Item 10</div>
+		<div class="item">Item 11</div>
+		<div class="item">Item 12</div>
+		<div class="item">Item 13</div>
+		<div class="item">Item 14</div>
+		<div class="item">Item 15</div>
+		<div class="item">Item 16</div>
+		<div class="placeholder"></div>
 	</div>
 
 	<script src="../dist/basicPagination.min.js"></script>
 
 	<script>
 
-		const instance = basicPagination.create(document.querySelectorAll('.items__item'), 4)
+		const instance = basicPagination.create(document.querySelectorAll('.item'), 4)
 
 		instance.first()
 		instance.last()
@@ -114,7 +114,7 @@
 
 		instance.render((instance) => {
 
-			const placeholder = document.querySelector('.items__pagination')
+			const placeholder = document.querySelector('.placeholder')
 
 			placeholder.innerHTML = `
 				<div class="pagination">
