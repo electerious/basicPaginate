@@ -41,7 +41,7 @@
 			margin-top: 1.5em;
 		}
 
-		.pagination__button {
+		.pagination button {
 			position: relative;
 			display: flex;
 			align-items: center;
@@ -59,29 +59,21 @@
 			outline: none;
 		}
 
-		.pagination__button svg {
+		.pagination button svg {
 			width: 46%;
 			height: 46%;
 			opacity: .3;
 		}
 
-		.pagination__button:hover svg {
-			opacity: .4;
-		}
-
-		.pagination__button:active svg {
-			opacity: .5;
-		}
-
-		.pagination__button:hover {
+		.pagination button:hover {
 			background: rgba(0, 0, 0, .05);
 		}
 
-		.pagination__button:active {
+		.pagination button:active {
 			background: rgba(0, 0, 0, .1);
 		}
 
-		.pagination__button.active {
+		.pagination button.active {
 			background: #2875ed;
 			color: white;
 		}
@@ -120,28 +112,27 @@
 		instance.next()
 		instance.goto(0)
 
-		const renderer = (instance) => `
-			<div class="pagination">
-				<button class="pagination__button" data-basicpagination-prev>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/></svg>
-				</button>
-				${ instance.pages().map((_, index) => `
-					<button class="pagination__button ${ index === instance.current() ? 'active' : '' }" data-basicpagination-goto="${ index }">${ index + 1 }</button>
-				`).join('') }
-				<button class="pagination__button" data-basicpagination-next>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z"/></svg>
-				</button>
-			</div>
-		`
+		instance.render((instance) => {
 
-		const updater = (pagination) => {
 			const placeholder = document.querySelector('.items__pagination')
 
-			placeholder.innerHTML = ''
-			placeholder.appendChild(pagination)
-		}
+			placeholder.innerHTML = `
+				<div class="pagination">
+					<button data-basicpagination-prev>
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/></svg>
+					</button>
+					${ instance.pages().map((_, index) => `
+						<button class="${ index === instance.current() ? 'active' : '' }" data-basicpagination-goto="${ index }">${ index + 1 }</button>
+					`).join('') }
+					<button data-basicpagination-next>
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z"/></svg>
+					</button>
+				</div>
+			`
 
-		instance.render(renderer, updater)
+			return placeholder
+
+		})
 
 	</script>
 
