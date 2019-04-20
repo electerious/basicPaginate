@@ -109,7 +109,7 @@ instance.render((instance) => {
 
 })
 
-// 4) Control every aspect of the pagination programmatically
+// 5) Control every aspect of the pagination programmatically
 instance.first()
 instance.last()
 instance.prev()
