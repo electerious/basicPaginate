@@ -8,13 +8,19 @@
 
 	<style>
 
+		html {
+			font-family: sans-serif;
+			width: 100%;
+			height: 100%;
+		}
+
 		body {
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			width: 100%;
-			min-height: 100vh;
-			font-family: sans-serif;
+			min-height: 100%;
+			margin: 0;
+			background: #f8f8f8;
 		}
 
 		.items {
@@ -23,9 +29,61 @@
 		}
 
 		.items__item {
-			margin-bottom: .2em;
+			margin-bottom: 4px;
 			padding: 1em 1.4em;
-			background: #f8f8f8;
+			background: white;
+			border-radius: 3px;
+		}
+
+		.pagination {
+			display: flex;
+			justify-content: center;
+			margin-top: 1.5em;
+		}
+
+		.pagination__button {
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 2em;
+			height: 2em;
+			margin: 0 .2em;
+			appearance: none;
+			background: transparent;
+			padding: 0;
+			border: none;
+			font: inherit;
+			border-radius: 100%;
+			cursor: pointer;
+			outline: none;
+		}
+
+		.pagination__button svg {
+			width: 46%;
+			height: 46%;
+			opacity: .3;
+		}
+
+		.pagination__button:hover svg {
+			opacity: .4;
+		}
+
+		.pagination__button:active svg {
+			opacity: .5;
+		}
+
+		.pagination__button:hover {
+			background: rgba(0, 0, 0, .05);
+		}
+
+		.pagination__button:active {
+			background: rgba(0, 0, 0, .1);
+		}
+
+		.pagination__button.active {
+			background: #2875ed;
+			color: white;
 		}
 
 	</style>
@@ -46,6 +104,7 @@
 		<div class="items__item">Item 13</div>
 		<div class="items__item">Item 14</div>
 		<div class="items__item">Item 15</div>
+		<div class="items__item">Item 16</div>
 		<div class="items__pagination"></div>
 	</div>
 
@@ -55,32 +114,31 @@
 
 		const instance = basicPagination.create(document.querySelectorAll('.items__item'), 4)
 
-		instance.goto(1)
+		instance.first()
+		instance.last()
 		instance.prev()
 		instance.next()
 		instance.goto(0)
 
 		const renderer = (instance) => `
-
 			<div class="pagination">
-				<button class="pagination__prev" data-basicpagination-first></button>
-				<button class="pagination__prev" data-basicpagination-prev></button>
+				<button class="pagination__button" data-basicpagination-prev>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/></svg>
+				</button>
 				${ instance.pages().map((_, index) => `
-					<button class="pagination__page ${ index === instance.current() ? 'active' : '' }" data-basicpagination-goto="${ index }">${ index + 1 }</button>
-				`) }
-				<button class="pagination__next" data-basicpagination-next></button>
-				<button class="pagination__next" data-basicpagination-last></button>
+					<button class="pagination__button ${ index === instance.current() ? 'active' : '' }" data-basicpagination-goto="${ index }">${ index + 1 }</button>
+				`).join('') }
+				<button class="pagination__button" data-basicpagination-next>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z"/></svg>
+				</button>
 			</div>
-
 		`
 
 		const updater = (pagination) => {
-
 			const placeholder = document.querySelector('.items__pagination')
 
 			placeholder.innerHTML = ''
 			placeholder.appendChild(pagination)
-
 		}
 
 		instance.render(renderer, updater)
