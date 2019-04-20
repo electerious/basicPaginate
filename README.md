@@ -63,44 +63,58 @@ const basicPagination = require('basicpagination')
 ```
 
 ```js
-import * as basicScroll from 'basicpagination'
+import * as basicPagination from 'basicpagination'
 ```
 
 ## Usage
 
-This demo shows how to to change the opacity of an element when the user scrolls. The element starts to fade as soon as the top of the element reaches the bottom of the viewport. A opacity of `.99` is reached when the middle of the element is in the middle of the viewport.
+This demo shows how to use basicPagination to turn a bunch of elements into a paginated list.
 
-Tip: Animating from `.01` to `.99` avoids the repaints that normally occur when the element changes from fully transparent to translucent and from translucent to fully visible.
+```html
+<!-- Elements that should be paginated -->
+<div class="item">Item 1</div>
+<div class="item">Item 2</div>
+<div class="item">Item 3</div>
+<div class="item">Item 4</div>
+<div class="item">Item 5</div>
+<div class="item">Item 6</div>
+<div class="item">Item 7</div>
+<div class="item">Item 8</div>
 
-```js
-const instance = basicScroll.create({
-	elem: document.querySelector('.element'),
-	from: 'top-bottom',
-	to: 'middle-middle',
-	props: {
-		'--opacity': {
-			from: .01,
-			to: .99
-		}
-	}
-})
-
-instance.start()
+<!-- Placeholder for the pagination -->
+<div class="placeholder"></div>
 ```
 
-```css
-.element {
-	/*
-	 * Use the same CSS variable as specified in our instance.
-	 */
-	opacity: var(--opacity);
-	/*
-	 * The will-change CSS property provides a way for authors to hint browsers about the kind of changes
-	 * to be expected on an element, so that the browser can setup appropriate optimizations ahead of time
-	 * before the element is actually changed.
-	 */
-	will-change: opacity;
-}
+```js
+// 1) Create a new pagination with the items and show up to 4 elements per page
+const instance = basicPagination.create(document.querySelectorAll('.item'), 4)
+
+// 2) Use the `render` function to generate the HTML and to render it to the DOM
+instance.render((instance) => {
+
+	const placeholder = document.querySelector('.placeholder')
+
+	// 3) Generate the HTML of your pagination
+	// Note: It doesn't matter how you generate the HTML as basicPagination works with any structure
+	placeholder.innerHTML = `
+		<div class="pagination">
+			<button data-basicpagination-prev>←</button>
+			<button data-basicpagination-next>→</button>
+		</div>
+	`
+
+	// 4) Return the created element so basicPagination can look for special attributes
+	// Note: You can also bind the event manually without adding special attributes to the elements
+	return placeholder
+
+})
+
+// 4) Control every aspect of the pagination programmatically
+instance.first()
+instance.last()
+instance.prev()
+instance.next()
+instance.goto(0)
 ```
 
 ## API
