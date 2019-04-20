@@ -33,14 +33,11 @@ const showPage = function(pages, index) {
 	const show = (elems) => elems.forEach((elem) => elem.removeAttribute('hidden'))
 	const hide = (elems) => elems.forEach((elem) => elem.setAttribute('hidden', true))
 
-	pages.forEach((elems, _index) => {
+	const isCurrent = (_, _index) => index === _index
+	const isNotCurrent = (_, _index) => index !== _index
 
-		const isCurrent = index === _index
-
-		if (isCurrent === true) show(elems)
-		else hide(elems)
-
-	})
+	pages.filter(isCurrent).forEach(show)
+	pages.filter(isNotCurrent).forEach(hide)
 
 }
 
