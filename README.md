@@ -248,7 +248,7 @@ instance.next()
 
 ### .render(renderer)
 
-basicPagination doesn't render anything by default. Use this function to build the HTML of your pagination and to render it onto your page.
+basicPagination doesn't render anything by default. Use this function to build the HTML of your pagination and to render it onto your site.
 
 The render function accepts a function that will called every time the page of the pagination changes. It receives the current instance and allows you to generate the HTML for the pagination. Return the created element *or* the element containing the generated element and basicPagination will look for special data attributes to automatically bind events. The supported attributes are `data-basicpagination-first`, `data-basicpagination-last`, `data-basicpagination-prev`, `data-basicpagination-next` and `data-basicpagination-goto`. Their behaviour is equal to the functions of the instance. You can also skip the attributes or return nothing to handle the event binding on your own.
 
@@ -257,7 +257,7 @@ Examples:
 ```js
 instance.render((instance) => {
 
-	const placeholder = document.querySelector('.items__pagination')
+	const placeholder = document.querySelector('.placeholder')
 
 	// Use the data attributes of basicPagination to get automatic event binding
 	placeholder.innerHTML = `
@@ -281,7 +281,7 @@ instance.render((instance) => {
 ```js
 instance.render((instance) => {
 
-	const placeholder = document.querySelector('.items__pagination')
+	const placeholder = document.querySelector('.placeholder')
 
 	placeholder.innerHTML = `
 		<div class="pagination">
@@ -300,9 +300,9 @@ instance.render((instance) => {
 ```js
 instance.render((instance) => {
 
-	const placeholder = document.querySelector('.items__pagination')
+	const placeholder = document.querySelector('.placeholder')
 
-	// Build the HTML of your pagination using document.createElement
+	// Build the HTML of your pagination with document.createElement
 	const prev = document.createElement('button')
 	const next = document.createElement('button')
 
