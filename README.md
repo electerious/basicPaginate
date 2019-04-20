@@ -19,7 +19,7 @@ basicPagination turns a list of elements into a JS-controlled pagination.
 
 | Name | Description | Link |
 |:-----------|:------------|:------------|
-| Default | Includes most features. | [Try it on CodePen]() |
+| Default | Includes most features. | [Try it on CodePen](https://codepen.io/electerious/pen/eoKgZX) |
 
 ## Features
 
