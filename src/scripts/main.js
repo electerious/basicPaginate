@@ -94,7 +94,7 @@ export const create = function(elems, elemsPerPage) {
 	let c = counter(0, length - 1, 0)
 
 	// Initialize pages list
-	const pages = chunk(Array.from(elems), length)
+	const pages = chunk(Array.from(elems), elemsPerPage)
 
 	// Returns all pages and their elements
 	const _pages = () => pages
