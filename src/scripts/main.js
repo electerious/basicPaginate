@@ -78,8 +78,8 @@ const renderPagination = function(html, instance) {
 
 /**
  * Creates a new instance.
- * @param {NodeList} elems
- * @param {Number} elemsPerPage
+ * @param {NodeList} elems - Elements that should be part of the pagination.
+ * @param {Number} elemsPerPage - Number of elements per page.
  * @returns {Object} instance
  */
 export const create = function(elems, elemsPerPage) {
