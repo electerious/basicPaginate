@@ -104,7 +104,7 @@ instance.render((instance) => {
 	`
 
 	// 4) Return the created element so basicPagination can look for special attributes
-	// Note: You can also bind the event manually without adding special attributes to the elements
+	// Note: You can also bind the event manually without adding attributes to the elements
 	return placeholder
 
 })
