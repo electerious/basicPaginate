@@ -1,0 +1,23 @@
+{
+  "name": "basicPagination",
+  "authors": [
+    "Tobias Reich <tobias@electerious.com>"
+  ],
+  "description": "Paginate a NodeList like there's no tomorrow",
+  "main": [
+    "dist/basicLightbox.min.js"
+  ],
+  "keywords": [],
+  "ignore": [
+    "**/.*",
+    "demos",
+    "gulpfile.js",
+    "package.json"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/electerious/basicPagination",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/electerious/basicPagination.git"
+  }
+}

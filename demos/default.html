@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+
+	<meta charset="utf-8">
+	<title>basicPagination Demo</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<style>
+
+		body {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			min-height: 100vh;
+			font-family: sans-serif;
+		}
+
+		.items {
+			width: 100%;
+			max-width: 500px;
+		}
+
+		.items__item {
+			margin-bottom: .2em;
+			padding: 1em 1.4em;
+			background: #f8f8f8;
+		}
+
+	</style>
+
+	<div class="items">
+		<div class="items__item">Item 1</div>
+		<div class="items__item">Item 2</div>
+		<div class="items__item">Item 3</div>
+		<div class="items__item">Item 4</div>
+		<div class="items__item">Item 5</div>
+		<div class="items__item">Item 6</div>
+		<div class="items__item">Item 7</div>
+		<div class="items__item">Item 8</div>
+		<div class="items__item">Item 9</div>
+		<div class="items__item">Item 10</div>
+		<div class="items__item">Item 11</div>
+		<div class="items__item">Item 12</div>
+		<div class="items__item">Item 13</div>
+		<div class="items__item">Item 14</div>
+		<div class="items__item">Item 15</div>
+		<div class="items__pagination"></div>
+	</div>
+
+	<script src="../dist/basicPagination.min.js"></script>
+
+	<script>
+
+		const instance = basicPagination.create(document.querySelectorAll('.items__item'), 4)
+
+		instance.goto(1)
+		instance.prev()
+		instance.next()
+		instance.goto(0)
+
+		const renderer = (instance) => `
+
+			<div class="pagination">
+				<button class="pagination__prev" data-basicpagination-first></button>
+				<button class="pagination__prev" data-basicpagination-prev></button>
+				${ instance.pages().map((_, index) => `
+					<button class="pagination__page ${ index === instance.current() ? 'active' : '' }" data-basicpagination-goto="${ index }">${ index + 1 }</button>
+				`) }
+				<button class="pagination__next" data-basicpagination-next></button>
+				<button class="pagination__next" data-basicpagination-last></button>
+			</div>
+
+		`
+
+		const updater = (pagination) => {
+
+			const placeholder = document.querySelector('.items__pagination')
+
+			placeholder.innerHTML = ''
+			placeholder.appendChild(pagination)
+
+		}
+
+		instance.render(renderer, updater)
+
+	</script>
+
+</html>
