@@ -17,8 +17,8 @@ basicPagination turns a list of elements into a JS-controlled pagination.
 
 ## Demos
 
-| Name | Description | Link | Author |
-|:-----------|:------------|:------------|:------------|
+| Name | Description | Link |
+|:-----------|:------------|:------------|
 | Default | Includes most features. | [Try it on CodePen]() |
 
 ## Features
