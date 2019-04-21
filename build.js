@@ -9,11 +9,11 @@ js('src/scripts/main.js', {
 
 	optimize: true,
 	browserify: {
-		standalone: 'basicPagination'
+		standalone: 'basicPaginate'
 	}
 
 }).then((data) => {
 
-	return save('dist/basicPagination.min.js', data)
+	return save('dist/basicPaginate.min.js', data)
 
 })

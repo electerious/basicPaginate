@@ -1,24 +1,26 @@
 {
-  "name": "basicpagination",
+  "name": "basicpaginate",
   "version": "1.0.0",
   "authors": [
     "Tobias Reich <tobias@electerious.com>"
   ],
   "description": "Paginate a NodeList like there's no tomorrow",
-  "main": "dist/basicPagination.min.js",
+  "main": "dist/basicPaginate.min.js",
   "keywords": [
     "paginate",
     "pagination",
+    "pages",
+    "paging",
     "page"
   ],
   "scripts": {
     "build": "node build.js"
   },
   "license": "MIT",
-  "homepage": "https://github.com/electerious/basicPagination",
+  "homepage": "https://github.com/electerious/basicPaginate",
   "repository": {
     "type": "git",
-    "url": "https://github.com/electerious/basicPagination.git"
+    "url": "https://github.com/electerious/basicPaginate.git"
   },
   "files": [
     "dist",

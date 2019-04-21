@@ -1,5 +1,5 @@
 {
-  "name": "basicPagination",
+  "name": "basicPaginate",
   "authors": [
     "Tobias Reich <tobias@electerious.com>"
   ],
@@ -15,9 +15,9 @@
     "package.json"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/electerious/basicPagination",
+  "homepage": "https://github.com/electerious/basicPaginate",
   "repository": {
     "type": "git",
-    "url": "https://github.com/electerious/basicPagination.git"
+    "url": "https://github.com/electerious/basicPaginate.git"
   }
 }

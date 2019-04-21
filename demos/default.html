@@ -2,7 +2,7 @@
 <html lang="en">
 
 	<meta charset="utf-8">
-	<title>basicPagination Demo</title>
+	<title>basicPaginate Demo</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -100,11 +100,11 @@
 		<div class="placeholder"></div>
 	</div>
 
-	<script src="../dist/basicPagination.min.js"></script>
+	<script src="../dist/basicPaginate.min.js"></script>
 
 	<script>
 
-		const instance = basicPagination.create(document.querySelectorAll('.item'), 4)
+		const instance = basicPaginate.create(document.querySelectorAll('.item'), 4)
 
 		instance.first()
 		instance.last()
@@ -118,13 +118,13 @@
 
 			placeholder.innerHTML = `
 				<div class="pagination">
-					<button data-basicpagination-prev>
+					<button data-basicpaginate-prev>
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/></svg>
 					</button>
 					${ instance.pages().map((_, index) => `
-						<button class="${ index === instance.current() ? 'active' : '' }" data-basicpagination-goto="${ index }">${ index + 1 }</button>
+						<button class="${ index === instance.current() ? 'active' : '' }" data-basicpaginate-goto="${ index }">${ index + 1 }</button>
 					`).join('') }
-					<button data-basicpagination-next>
+					<button data-basicpaginate-next>
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z"/></svg>
 					</button>
 				</div>

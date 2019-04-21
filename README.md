@@ -1,10 +1,10 @@
-# basicPagination
+# basicPaginate
 
-[![Dependencies](https://david-dm.org/electerious/basicpagination.svg)](https://david-dm.org/electerious/basicpagination.svg#info=dependencies) [![Donate via PayPal](https://img.shields.io/badge/paypal-donate-009cde.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CYKBESW577YWE)
+[![Dependencies](https://david-dm.org/electerious/basicpaginate.svg)](https://david-dm.org/electerious/basicpaginate.svg#info=dependencies) [![Donate via PayPal](https://img.shields.io/badge/paypal-donate-009cde.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CYKBESW577YWE)
 
 Paginate a NodeList like there's no tomorrow.
 
-basicPagination turns a list of elements into a JS-controlled pagination.
+basicPaginate turns a list of elements into a JS-controlled pagination.
 
 ## Contents
 
@@ -31,7 +31,7 @@ basicPagination turns a list of elements into a JS-controlled pagination.
 
 ## Requirements
 
-basicPagination depends on the following browser features and APIs:
+basicPaginate depends on the following browser features and APIs:
 
 - [Array.from](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from)
 - [Node​List​.prototype​.for​Each](https://developer.mozilla.org/en-US/docs/Web/API/NodeList/forEach)
@@ -40,35 +40,35 @@ Some of these APIs are capable of being polyfilled in older browsers. Check the 
 
 ## Setup
 
-We recommend installing basicPagination using [npm](https://npmjs.com) or [yarn](https://yarnpkg.com).
+We recommend installing basicPaginate using [npm](https://npmjs.com) or [yarn](https://yarnpkg.com).
 
 ```sh
-npm install basicpagination
+npm install basicpaginate
 ```
 
 ```sh
-yarn add basicpagination
+yarn add basicpaginate
 ```
 
 Include the JS file at the end of your `body` tag…
 
 ```html
-<script src="dist/basicPagination.min.js"></script>
+<script src="dist/basicPaginate.min.js"></script>
 ```
 
-…or skip the JS file and use basicPagination as a module:
+…or skip the JS file and use basicPaginate as a module:
 
 ```js
-const basicPagination = require('basicpagination')
+const basicPaginate = require('basicpaginate')
 ```
 
 ```js
-import * as basicPagination from 'basicpagination'
+import * as basicPaginate from 'basicpaginate'
 ```
 
 ## Usage
 
-This demo shows how to use basicPagination to turn a bunch of elements into a paginated list.
+This demo shows how to use basicPaginate to turn a bunch of elements into a paginated list.
 
 ```html
 <!-- Elements that should be paginated -->
@@ -87,7 +87,7 @@ This demo shows how to use basicPagination to turn a bunch of elements into a pa
 
 ```js
 // 1) Create a new pagination with the items and show up to 4 elements per page
-const instance = basicPagination.create(document.querySelectorAll('.item'), 4)
+const instance = basicPaginate.create(document.querySelectorAll('.item'), 4)
 
 // 2) Use the `render` function to generate the HTML and to render it to the DOM
 instance.render((instance) => {
@@ -95,15 +95,15 @@ instance.render((instance) => {
 	const placeholder = document.querySelector('.placeholder')
 
 	// 3) Generate the HTML of your pagination
-	// Note: It doesn't matter how you generate the HTML as basicPagination works with any structure
+	// Note: It doesn't matter how you generate the HTML as basicPaginate works with any structure
 	placeholder.innerHTML = `
 		<div class="pagination">
-			<button data-basicpagination-prev>←</button>
-			<button data-basicpagination-next>→</button>
+			<button data-basicpaginate-prev>←</button>
+			<button data-basicpaginate-next>→</button>
 		</div>
 	`
 
-	// 4) Return the created element so basicPagination can look for special attributes
+	// 4) Return the created element so basicPaginate can look for special attributes
 	// Note: You can also bind the event manually without adding attributes to the elements
 	return placeholder
 
@@ -121,7 +121,7 @@ instance.goto(0)
 
 ### .create(elems, elemsPerPage)
 
-Creates a new basicPagination instance.
+Creates a new basicPaginate instance.
 
 Be sure to assign your instance to a variable. Using your instance, you can…
 
@@ -129,12 +129,12 @@ Be sure to assign your instance to a variable. Using your instance, you can…
 * …navigate back and forward.
 * …goto a specific page.
 * …goto a the first or last page.
-* …tell basicPagination to render a HTML pagination.
+* …tell basicPaginate to render a HTML pagination.
 
 Example:
 
 ```js
-const instance = basicPagination.create(document.querySelectorAll('.item'), 4)
+const instance = basicPaginate.create(document.querySelectorAll('.item'), 4)
 ```
 
 Parameters:
@@ -148,7 +148,7 @@ Returns:
 
 ## Instance API
 
-Each basicPagination instance has a handful of handy functions. Below are all of them along with a short description.
+Each basicPaginate instance has a handful of handy functions. Below are all of them along with a short description.
 
 ### .pages()
 
@@ -248,9 +248,9 @@ instance.next()
 
 ### .render(renderer)
 
-basicPagination doesn't render anything by default. Use this function to build the HTML of your pagination and to render it onto your site.
+basicPaginate doesn't render anything by default. Use this function to build the HTML of your pagination and to render it onto your site.
 
-The render function accepts a function that will called every time the page of the pagination changes. It receives the current instance and allows you to generate the HTML for the pagination. Return the created element *or* the element containing the generated element and basicPagination will look for special data attributes to automatically bind events. The supported attributes are `data-basicpagination-first`, `data-basicpagination-last`, `data-basicpagination-prev`, `data-basicpagination-next` and `data-basicpagination-goto`. Their behaviour is equal to the functions of the instance. You can also skip the attributes or return nothing to handle the event binding on your own.
+The render function accepts a function that will called every time the page of the pagination changes. It receives the current instance and allows you to generate the HTML for the pagination. Return the created element *or* the element containing the generated element and basicPaginate will look for special data attributes to automatically bind events. The supported attributes are `data-basicpaginate-first`, `data-basicpaginate-last`, `data-basicpaginate-prev`, `data-basicpaginate-next` and `data-basicpaginate-goto`. Their behaviour is equal to the functions of the instance. You can also skip the attributes or return nothing to handle the event binding on your own.
 
 Examples:
 
@@ -259,20 +259,20 @@ instance.render((instance) => {
 
 	const placeholder = document.querySelector('.placeholder')
 
-	// Use the data attributes of basicPagination to get automatic event binding
+	// Use the data attributes of basicPaginate to get automatic event binding
 	placeholder.innerHTML = `
 		<div class="pagination">
-			<button data-basicpagination-first>First</button>
-			<button data-basicpagination-prev>←</button>
+			<button data-basicpaginate-first>First</button>
+			<button data-basicpaginate-prev>←</button>
 			${ instance.pages().map((_, index) => `
-				<button class="${ index === instance.current() ? 'active' : '' }" data-basicpagination-goto="${ index }">${ index + 1 }</button>
+				<button class="${ index === instance.current() ? 'active' : '' }" data-basicpaginate-goto="${ index }">${ index + 1 }</button>
 			`).join('') }
-			<button data-basicpagination-next>→</button>
-			<button data-basicpagination-last>Last</button>
+			<button data-basicpaginate-next>→</button>
+			<button data-basicpaginate-last>Last</button>
 		</div>
 	`
 
-	// Return the created element so basicPagination can look for special attributes
+	// Return the created element so basicPaginate can look for special attributes
 	return placeholder
 
 })

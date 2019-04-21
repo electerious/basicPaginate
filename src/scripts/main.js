@@ -47,24 +47,24 @@ const setEvents = function(pagination, instance) {
 		return
 	}
 
-	pagination.querySelectorAll('[data-basicpagination-first]').forEach((elem) => {
+	pagination.querySelectorAll('[data-basicpaginate-first]').forEach((elem) => {
 		elem.addEventListener('click', instance.first)
 	})
 
-	pagination.querySelectorAll('[data-basicpagination-last]').forEach((elem) => {
+	pagination.querySelectorAll('[data-basicpaginate-last]').forEach((elem) => {
 		elem.addEventListener('click', instance.last)
 	})
 
-	pagination.querySelectorAll('[data-basicpagination-prev]').forEach((elem) => {
+	pagination.querySelectorAll('[data-basicpaginate-prev]').forEach((elem) => {
 		elem.addEventListener('click', instance.prev)
 	})
 
-	pagination.querySelectorAll('[data-basicpagination-next]').forEach((elem) => {
+	pagination.querySelectorAll('[data-basicpaginate-next]').forEach((elem) => {
 		elem.addEventListener('click', instance.next)
 	})
 
-	pagination.querySelectorAll('[data-basicpagination-goto]').forEach((elem) => {
-		const newIndex = parseInt(elem.getAttribute('data-basicpagination-goto'))
+	pagination.querySelectorAll('[data-basicpaginate-goto]').forEach((elem) => {
+		const newIndex = parseInt(elem.getAttribute('data-basicpaginate-goto'))
 		elem.addEventListener('click', () => instance.goto(newIndex))
 	})
 
